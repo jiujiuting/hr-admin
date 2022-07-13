@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: '凡王之血，必以剑终',
+  title: '时不我予',
 
   /**
    * @type {boolean} true | false

@@ -40,6 +40,12 @@ Vue.use(ElementUI, { locale })
 // 控制台生产提示
 Vue.config.productionTip = false
 
+// 自定义指令
+// 批量导入自定义指令
+import * as obj from '@/directives'
+Object.keys(obj).forEach(item => {
+  Vue.directive(item, obj[item])
+})
 new Vue({
   el: '#app',
   router,

@@ -119,6 +119,7 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          // 登录请求
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
@@ -245,8 +246,8 @@ $light_gray: #eee;
   }
 }
 .login-container {
-  background-image: url("~@/assets/common/login.jpg"); // 设置背景图片
-  background-position: center; // 将图片位置设置为充满整个屏幕
+  background: url("~@/assets/common/1 (3).jpg") no-repeat center; // 设置背景图片
+  background-size: cover; // 将图片位置设置为充满整个屏幕
 }
 ::v-deep .el-form-item__error {
   color: #fff !important;

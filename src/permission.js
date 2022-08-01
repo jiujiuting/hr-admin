@@ -4,7 +4,7 @@ import 'nprogress/nprogress.css'
 import store from '@/store'
 const whiteList = ['/login', '/404'] // 白名单
 // 前置路由守卫
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
   NProgress.start() // 开启进度效果
   // 权限控制
   const token = store.state.user.token
@@ -15,7 +15,11 @@ router.beforeEach((to, from, next) => {
     } else {
       if (!store.state.user.userInfo.id) {
         // 当用户手里面有token并且访问的不是登录页面，那就应该请求个人资料
-        store.dispatch('user/getInfo')
+        const { roles } = await store.dispatch('user/getInfo')
+        const newRoutes = await store.dispatch('permission/filter', roles.menus)
+        router.addRoutes([...newRoutes, { path: '*', redirect: '/404', hidden: true }])
+        // to.apth 是指当前路径
+        next(to.path)
       }
       next()
     }

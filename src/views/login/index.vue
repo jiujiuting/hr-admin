@@ -83,7 +83,7 @@ export default {
       loginRules: {
         username: [
           { required: true, message: '手机号不能为空', trigger: 'blur' },
-          { validator: validateMobile }
+          { validator: validateMobile, trigger: 'blur' }
         ],
         password: [
           { required: true, message: '密码号不能为空', trigger: 'blur' },
